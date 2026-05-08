@@ -321,7 +321,11 @@ with tab1:
             "Value Rate":     "{:.1f}",
             "Reach Rate":     "{:.1f}",
             "Consensus Rate": "{:.1f}",
-        }).apply(lambda x: ["font-weight: bold" if x.name == "Team" else "" for _ in x], axis=0)
+        }).set_properties(subset=["Team"], **{
+            "background-color": "#f0f2f6",
+            "color": "#000000",
+            "font-weight": "bold"
+        })
     )
     st.markdown("""
 Each draft slot is attributed points via the Fitzgerald-Spielberger chart and consensus mock draft slot comes from Arif Hasan's consensus mock draft board. Adj Total maps directly to Grades and is the total Fitzgerald-Spielberger points from picks made by each team. Points and the resulting grade are an aggregate of points from 1) pick # for player relative to mock draft consensus board # 2) trade net on pure pick swap deals.
