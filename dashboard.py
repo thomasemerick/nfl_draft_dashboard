@@ -293,7 +293,7 @@ with tab1:
             "value_rate":       "Value Rate",
             "reach_rate":       "Reach Rate",
             "consensus_rate":   "Consensus Rate"
-    }).sort_values("Score", ascending=False).reset_index(drop=True),,
+    }).sort_values("Score", ascending=False).reset_index(drop=True),
         use_container_width=True,
         hide_index=True
     )
