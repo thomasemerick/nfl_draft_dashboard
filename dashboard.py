@@ -278,10 +278,10 @@ tab1, tab2, tab3, tab4 = st.tabs(["📊 Team Grades", "🔵 YMMV Quadrants", "�
 # ════════════════════════════════
 with tab1:
     st.subheader("Team Draft Grades")
-    st.markdown("Sort away.")
+    st.markdown("Score 1-10 and resulting grades reflect total Fitzgerald-Spielberger chart value accumulated through two avenues on 2026 NFL draft weekend: 1) pick # for player relative to mock draft consensus board # 2) trade net on pure pick swap deals.")
 
     display_cols = ["team","ranked_picks","avg_value_diff","trade_capital_net",
-                "adj_avg","score","grade","value_rate","reach_rate","value_edge"]
+                "adj_avg","score","grade","value_rate","reach_rate","consensus_rate"]
 
     st.dataframe(
         summary_df[display_cols].rename(columns={"value_edge": "value_score"}).sort_values("score", ascending=False).reset_index(drop=True),
