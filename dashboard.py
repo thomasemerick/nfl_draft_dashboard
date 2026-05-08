@@ -278,7 +278,7 @@ tab1, tab2, tab3, tab4 = st.tabs(["📊 Team Grades", "🔵 YMMV Quadrants", "�
 # ════════════════════════════════
 with tab1:
     st.subheader("Team Draft Grades")
-    st.markdown("Grades do reflect the total value per Fitzgerald-Spielberger chart that teams generated during 2026 NFL Draft weekend.")
+    st.markdown("Grades reflect the total value per Fitzgerald-Spielberger chart that teams generated during 2026 NFL Draft weekend.")
     display_cols = ["team","total_value_diff","trade_capital_net",
                 "adj_total","score","grade","value_rate","reach_rate","consensus_rate"]
 
@@ -303,8 +303,11 @@ with tab1:
             styles[col] = styles[col] + "; text-align: center"
         return styles
 
+    numeric_cols = styled.select_dtypes(include='number').columns
+    styled[numeric_cols] = styled[numeric_cols].round(1)
+
     st.dataframe(
-        styled.round(1).style.apply(style_table, axis=None),
+        styled.style.apply(style_table, axis=None),
         use_container_width=True,
         hide_index=True
     )
