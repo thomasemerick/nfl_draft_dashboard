@@ -309,8 +309,8 @@ with tab1:
     <style>
     table { width: 100%; border-collapse: collapse; }
     th { text-align: center !important; font-weight: 600; padding: 8px; border-bottom: 2px solid #ddd; }
-    td { text-align: center; padding: 8px; border-bottom: 1px solid #eee; }
-    td:first-child { text-align: left; font-weight: bold; }
+    td { text-align: center !important; padding: 8px; border-bottom: 1px solid #eee; }
+    td:first-child { text-align: left !important; font-weight: bold; }
     th:first-child { text-align: left !important; }
     </style>
     """, unsafe_allow_html=True)
