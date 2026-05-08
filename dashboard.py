@@ -295,34 +295,16 @@ with tab1:
         "consensus_rate":   "Consensus Rate"
     }).sort_values("Score", ascending=False).reset_index(drop=True)
 
-    # Build HTML table manually for full style control
-    cols = styled.columns.tolist()
-
-    html = "<table style='width:100%; border-collapse:collapse;'>"
-
-    # Header row
-    html += "<tr>"
-    for col in cols:
-        html += f"<th style='text-align:center; padding:10px 8px; border-bottom:2px solid #ddd; font-weight:600; font-size:14px;'>{col}</th>"
-    html += "</tr>"
-
-    # Data rows
-    for _, row in styled.iterrows():
-        html += "<tr>"
-        for i, col in enumerate(cols):
-            val = row[col]
-            if col in ["Score","Value Rate","Reach Rate","Consensus Rate"]:
-                val = f"{float(val):.1f}"
-            if i == 0:
-                style = "text-align:center; font-weight:bold; padding:8px; border-bottom:1px solid #eee; font-size:16px;"
-            else:
-                style = "text-align:center; padding:8px; border-bottom:1px solid #eee; font-size:16px;"
-            html += f"<td style='{style}'>{val}</td>"
-        html += "</tr>"
-
-    html += "</table>"
-
-    st.markdown(html, unsafe_allow_html=True)
+    st.dataframe(
+        styled.style.format({
+            "Score":          "{:.1f}",
+            "Value Rate":     "{:.1f}",
+            "Reach Rate":     "{:.1f}",
+            "Consensus Rate": "{:.1f}",
+        }),
+        use_container_width=True,
+        hide_index=True
+    )
 
     st.markdown("")
     st.markdown("""
