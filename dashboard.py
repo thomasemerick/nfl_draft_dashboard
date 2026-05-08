@@ -296,8 +296,8 @@ with tab1:
 
     def style_table(df):
         styles = pd.DataFrame("", index=df.index, columns=df.columns)
-        # Bold first row
-        styles.iloc[0] = "font-weight: bold"
+        # Bold first column
+        styles.iloc[:, 0] = "font-weight: bold"
         # Center all columns except first
         for col in df.columns[1:]:
             styles[col] = styles[col] + "; text-align: center"
