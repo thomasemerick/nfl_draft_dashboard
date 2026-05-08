@@ -314,9 +314,9 @@ with tab1:
             if col in ["Score","Value Rate","Reach Rate","Consensus Rate"]:
                 val = f"{float(val):.1f}"
             if i == 0:
-                style = "text-align:center; font-weight:bold; background-color:#f0f2f6; padding:8px; border-bottom:1px solid #eee; font-size:13px;"
+                style = "text-align:center; font-weight:bold; padding:8px; border-bottom:1px solid #eee; font-size:16px;"
             else:
-                style = "text-align:center; padding:8px; border-bottom:1px solid #eee; font-size:13px;"
+                style = "text-align:center; padding:8px; border-bottom:1px solid #eee; font-size:16px;"
             html += f"<td style='{style}'>{val}</td>"
         html += "</tr>"
 
