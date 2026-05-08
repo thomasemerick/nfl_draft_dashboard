@@ -307,11 +307,11 @@ with tab1:
 
     st.markdown("""
     <style>
-    table { width: 100%; border-collapse: collapse; }
-    th { text-align: center !important; font-weight: 600; padding: 8px; border-bottom: 2px solid #ddd; }
-    td { text-align: center !important; padding: 8px; border-bottom: 1px solid #eee; }
-    td:first-child { text-align: left !important; font-weight: bold !important; }
-    th:first-child { text-align: left !important; }
+    .stTable table { width: 100%; border-collapse: collapse; }
+    .stTable th { text-align: center !important; font-weight: 600; padding: 8px; border-bottom: 2px solid #ddd; }
+    .stTable td { text-align: center !important; padding: 8px; border-bottom: 1px solid #eee; }
+    .stTable td:first-child { text-align: left !important; font-weight: bold !important; }
+    .stTable th:first-child { text-align: left !important; }
     </style>
     """, unsafe_allow_html=True)
 
