@@ -324,7 +324,8 @@ with tab1:
         }).set_properties(subset=["Team"], **{
             "background-color": "#f0f2f6",
             "color": "#000000",
-            "font-weight": "bold"
+            "font-weight": "bold",
+            "text-align": "center"
         })
     )
     st.markdown("""
