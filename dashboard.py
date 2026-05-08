@@ -294,17 +294,18 @@ with tab1:
         "consensus_rate":   "Consensus Rate"
     }).sort_values("Score", ascending=False).reset_index(drop=True)
 
+    # Round before styling
+    styled["Score"] = styled["Score"].round(1)
+    styled["Value Rate"] = styled["Value Rate"].round(1)
+    styled["Reach Rate"] = styled["Reach Rate"].round(1)
+    styled["Consensus Rate"] = styled["Consensus Rate"].round(1)
+
     def style_table(df):
         styles = pd.DataFrame("", index=df.index, columns=df.columns)
-        # Bold first column
         styles.iloc[:, 0] = "font-weight: bold"
-        # Center all columns except first
         for col in df.columns[1:]:
             styles[col] = styles[col] + "; text-align: center"
         return styles
-
-    numeric_cols = styled.select_dtypes(include='number').columns
-    styled[numeric_cols] = styled[numeric_cols].round(1)
 
     st.dataframe(
         styled.style.apply(style_table, axis=None),
