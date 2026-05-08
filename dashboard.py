@@ -278,7 +278,7 @@ tab1, tab2, tab3, tab4 = st.tabs(["📊 Team Grades", "🔵 YMMV Quadrants", "�
 # ════════════════════════════════
 with tab1:
     st.subheader("Team Draft Grades")
-    st.markdown("Grades reflect the total value teams generated during 2026 NFL Draft weekend. Summary on metrics below.")
+    st.markdown("Grades reflect the total value teams generated during 2026 NFL Draft weekend. Metrics explained below table.")
 
     display_cols = ["team","total_value_diff","trade_capital_net",
                     "adj_total","score","grade","value_rate","reach_rate","consensus_rate"]
