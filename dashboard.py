@@ -285,15 +285,15 @@ with tab1:
     st.dataframe(
         summary_df[display_cols].rename(columns={
             "team":             "Team",
-            "total_value_diff": "Total Value Diff",
-            "trade_capital_net":"Trade Capital Net",
+            "total_value_diff": "Value vs Consensus",
+            "trade_capital_net":"Value on Pick Swaps",
             "adj_total":        "Adj Total",
             "score":            "Score",
             "grade":            "Grade",
             "value_rate":       "Value Rate",
             "reach_rate":       "Reach Rate",
             "consensus_rate":   "Consensus Rate"
-        }).sort_values("Score", ascending=False).reset_index(drop=True),
+    }).sort_values("Score", ascending=False).reset_index(drop=True),,
         use_container_width=True,
         hide_index=True
     )
