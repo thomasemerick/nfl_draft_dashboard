@@ -278,8 +278,7 @@ tab1, tab2, tab3, tab4 = st.tabs(["📊 Team Grades", "🔵 YMMV Quadrants", "�
 # ════════════════════════════════
 with tab1:
     st.subheader("Team Draft Grades")
-    st.markdown("Grades reflect total value generated over 2026 NFL Draft weekend per with each draft slot attributed points via the Fitzgerald-Spielberger chart and expected draft slot coming from Arif Hasan's consensus mock draft board. Adj. Avg maps directly to Grades and is the amount of Fitzgerald-Spielberger points divided by consensus board-ranked picks made by each team. Points and the resulting grade derive from 1) pick # for player relative to mock draft consensus board # 2) trade net on pure pick swap deals.")
-
+    st.markdown("Grades reflect total value generated over 2026 NFL Draft weekend.
     display_cols = ["team","ranked_picks","avg_value_diff","trade_capital_net",
                 "adj_avg","score","grade","value_rate","reach_rate","consensus_rate"]
 
@@ -288,6 +287,8 @@ with tab1:
         use_container_width=True,
         hide_index=True
     )
+    st.markdown("Each draft slot is attributed points via the Fitzgerald-Spielberger chart and expected draft slot coming from Arif Hasan's consensus mock draft board. Adj. Avg maps directly to Grades and is the amount of Fitzgerald-Spielberger points divided by consensus board-ranked picks made by each team. Points and the resulting grade derive from 1) pick # for player relative to mock draft consensus board # 2) trade net on pure pick swap deals.")
+
 
 # ════════════════════════════════
 # TAB 2 — YMMV Quadrants
