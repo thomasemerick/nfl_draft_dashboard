@@ -294,11 +294,9 @@ with tab1:
         "consensus_rate":   "Consensus Rate"
     }).sort_values("Score", ascending=False).reset_index(drop=True)
 
-    # Round before styling
-    styled["Score"] = styled["Score"].round(1)
-    styled["Value Rate"] = styled["Value Rate"].round(1)
-    styled["Reach Rate"] = styled["Reach Rate"].round(1)
-    styled["Consensus Rate"] = styled["Consensus Rate"].round(1)
+    # Round here
+for col in ["Score", "Value Rate", "Reach Rate", "Consensus Rate"]:
+    styled[col] = styled[col].apply(lambda x: round(float(x), 1))
 
     def style_table(df):
         styles = pd.DataFrame("", index=df.index, columns=df.columns)
