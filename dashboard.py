@@ -306,11 +306,16 @@ with tab1:
         return styles
 
     st.dataframe(
-        styled.style.apply(style_table, axis=None),
+        styled,
         use_container_width=True,
         hide_index=True,
         column_config={
+            "Team":           st.column_config.TextColumn(),
+            "Pick Value Net": st.column_config.NumberColumn(),
+            "Trade Value Net":st.column_config.NumberColumn(),
+            "Adj Total":      st.column_config.NumberColumn(),
             "Score":          st.column_config.NumberColumn(format="%.1f"),
+            "Grade":          st.column_config.TextColumn(),
             "Value Rate":     st.column_config.NumberColumn(format="%.1f"),
             "Reach Rate":     st.column_config.NumberColumn(format="%.1f"),
             "Consensus Rate": st.column_config.NumberColumn(format="%.1f"),
