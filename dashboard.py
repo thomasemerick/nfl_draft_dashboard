@@ -271,7 +271,7 @@ if selected_pos   != "All": filtered = filtered[filtered["pos"]   == selected_po
 if selected_round != "All": filtered = filtered[filtered["round"] == selected_round]
 
 # ── Tabs ──
-tab1, tab2, tab3, tab4 = st.tabs(["📊 Team Grades", "🔵 Quadrant Chart", "📋 Pick Explorer", "🏆 Bucking Consensus"])
+tab1, tab2, tab3, tab4 = st.tabs(["📊 Team Grades", "🔵 YMMV Quadrants", "📋 Pick Explorer", "🏆 Bucking Consensus"])
 
 # ════════════════════════════════
 # TAB 1 — Team Grades
