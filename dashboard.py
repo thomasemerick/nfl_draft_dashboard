@@ -287,7 +287,7 @@ with tab1:
         use_container_width=True,
         hide_index=True
     )
-    st.markdown("Each draft slot is attributed points via the Fitzgerald-Spielberger chart and consensus mock draft slot comes from Arif Hasan's consensus mock draft board. Adj. Avg maps directly to Grades and is the amount of Fitzgerald-Spielberger points divided by consensus board-ranked picks made by each team. Points and the resulting grade derive from 1) pick # for player relative to mock draft consensus board # 2) trade net on pure pick swap deals.")
+    st.markdown("Each draft slot is attributed points via the Fitzgerald-Spielberger chart and consensus mock draft slot comes from Arif Hasan's consensus mock draft board. Adj. Avg maps directly to Grades and is the amount of Fitzgerald-Spielberger points divided by board-ranked picks made by each team. Points and the resulting grade are an aggregate of points from 1) pick # for player relative to mock draft consensus board # 2) trade net on pure pick swap deals.")
 
 
 # ════════════════════════════════
