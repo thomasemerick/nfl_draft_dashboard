@@ -279,8 +279,9 @@ tab1, tab2, tab3, tab4 = st.tabs(["📊 Team Grades", "🔵 YMMV Quadrants", "�
 with tab1:
     st.subheader("Team Draft Grades")
     st.markdown("Grades reflect the total value per Fitzgerald-Spielberger chart that teams generated during 2026 NFL Draft weekend.")
+
     display_cols = ["team","total_value_diff","trade_capital_net",
-                "adj_total","score","grade","value_rate","reach_rate","consensus_rate"]
+                    "adj_total","score","grade","value_rate","reach_rate","consensus_rate"]
 
     styled = summary_df[display_cols].rename(columns={
         "team":             "Team",
@@ -294,9 +295,8 @@ with tab1:
         "consensus_rate":   "Consensus Rate"
     }).sort_values("Score", ascending=False).reset_index(drop=True)
 
-    # Round here
-for col in ["Score", "Value Rate", "Reach Rate", "Consensus Rate"]:
-    styled[col] = styled[col].apply(lambda x: round(float(x), 1))
+    for col in ["Score", "Value Rate", "Reach Rate", "Consensus Rate"]:
+        styled[col] = styled[col].round(1)
 
     def style_table(df):
         styles = pd.DataFrame("", index=df.index, columns=df.columns)
@@ -310,8 +310,10 @@ for col in ["Score", "Value Rate", "Reach Rate", "Consensus Rate"]:
         use_container_width=True,
         hide_index=True
     )
-    st.markdown("Each draft slot is attributed points via the Fitzgerald-Spielberger chart and consensus mock draft slot comes from Arif Hasan's consensus mock draft board. Adj. Avg maps directly to Grades and is the amount of Fitzgerald-Spielberger points divided by board-ranked picks made by each team. Points and the resulting grade are an aggregate of points from 1) pick # for player relative to mock draft consensus board # 2) trade net on pure pick swap deals.")
 
+    st.markdown("""
+Each draft slot is attributed points via the Fitzgerald-Spielberger chart and consensus mock draft slot comes from Arif Hasan's consensus mock draft board. Adj Total maps directly to Grades and is the total Fitzgerald-Spielberger points from picks made by each team. Points and the resulting grade are an aggregate of points from 1) pick # for player relative to mock draft consensus board # 2) trade net on pure pick swap deals.
+""")
 
 # ════════════════════════════════
 # TAB 2 — YMMV Quadrants
