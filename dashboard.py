@@ -282,8 +282,7 @@ with tab1:
     display_cols = ["team","total_value_diff","trade_capital_net",
                 "adj_total","score","grade","value_rate","reach_rate","consensus_rate"]
 
-    st.dataframe(
-        summary_df[display_cols].rename(columns={
+    styled = summary_df[display_cols].rename(columns={
         "team":             "Team",
         "total_value_diff": "Pick Value Net",
         "trade_capital_net":"Trade Value Net",
@@ -293,7 +292,21 @@ with tab1:
         "value_rate":       "Value Rate",
         "reach_rate":       "Reach Rate",
         "consensus_rate":   "Consensus Rate"
-    }).sort_values("Score", ascending=False).reset_index(drop=True),
+    }).sort_values("Score", ascending=False).reset_index(drop=True)
+
+    def style_table(df):
+        styles = pd.DataFrame("", index=df.index, columns=df.columns)
+        # Bold first row
+        styles.iloc[0] = "font-weight: bold"
+        # Bold first column
+        styles.iloc[:, 0] = "font-weight: bold"
+        # Center all columns except first
+        for col in df.columns[1:]:
+            styles[col] = styles[col] + "; text-align: center"
+        return styles
+
+    st.dataframe(
+        styled.style.apply(style_table, axis=None),
         use_container_width=True,
         hide_index=True
     )
