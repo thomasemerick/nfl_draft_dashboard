@@ -295,39 +295,36 @@ with tab1:
         "consensus_rate":   "Consensus Rate"
     }).sort_values("Score", ascending=False).reset_index(drop=True)
 
-    for col in ["Score", "Value Rate", "Reach Rate", "Consensus Rate"]:
-        styled[col] = styled[col].round(1)
+    # Build HTML table manually for full style control
+    cols = styled.columns.tolist()
 
-    def style_table(df):
-        styles = pd.DataFrame("", index=df.index, columns=df.columns)
-        styles.iloc[:, 0] = "font-weight: bold"
-        for col in df.columns[1:]:
-            styles[col] = styles[col] + "; text-align: center"
-        return styles
+    html = "<table style='width:100%; border-collapse:collapse;'>"
 
-    st.markdown("""
-    <style>
-    .stTable table { width: 100%; border-collapse: collapse; }
-    .stTable th { text-align: center !important; font-weight: 600; padding: 8px; border-bottom: 2px solid #ddd; }
-    .stTable td { text-align: center !important; padding: 8px; border-bottom: 1px solid #eee; }
-    .stTable td:first-child { text-align: left !important; font-weight: bold !important; }
-    .stTable th:first-child { text-align: left !important; }
-    </style>
-    """, unsafe_allow_html=True)
+    # Header row
+    html += "<tr>"
+    for col in cols:
+        html += f"<th style='text-align:center; padding:10px 8px; border-bottom:2px solid #ddd; font-weight:600; font-size:14px;'>{col}</th>"
+    html += "</tr>"
 
-    st.table(
-        styled.style.format({
-            "Score":          "{:.1f}",
-            "Value Rate":     "{:.1f}",
-            "Reach Rate":     "{:.1f}",
-            "Consensus Rate": "{:.1f}",
-        }).set_properties(subset=["Team"], **{
-            "background-color": "#f0f2f6",
-            "color": "#000000",
-            "font-weight": "bold",
-            "text-align": "center"
-        })
-    )
+    # Data rows
+    for _, row in styled.iterrows():
+        html += "<tr>"
+        for i, col in enumerate(cols):
+            val = row[col]
+            if col in ["Score","Value Rate","Reach Rate","Consensus Rate"]:
+                val = f"{float(val):.1f}"
+            if i == 0:
+                style = "text-align:center; font-weight:bold; background-color:#f0f2f6; padding:8px; border-bottom:1px solid #eee; font-size:13px;"
+            else:
+                style = "text-align:center; padding:8px; border-bottom:1px solid #eee; font-size:13px;"
+            html += f"<td style='{style}'>{val}</td>"
+        html += "</tr>"
+
+    html += "</table>"
+
+    st.markdown(html, unsafe_allow_html=True)
+
+    st.markdown("")
     st.markdown("""
 Each draft slot is attributed points via the Fitzgerald-Spielberger chart and consensus mock draft slot comes from Arif Hasan's consensus mock draft board. Adj Total maps directly to Grades and is the total Fitzgerald-Spielberger points from picks made by each team. Points and the resulting grade are an aggregate of points from 1) pick # for player relative to mock draft consensus board # 2) trade net on pure pick swap deals.
 """)
