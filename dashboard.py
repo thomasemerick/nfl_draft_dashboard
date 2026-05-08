@@ -308,7 +308,13 @@ with tab1:
     st.dataframe(
         styled.style.apply(style_table, axis=None),
         use_container_width=True,
-        hide_index=True
+        hide_index=True,
+        column_config={
+            "Score":          st.column_config.NumberColumn(format="%.1f"),
+            "Value Rate":     st.column_config.NumberColumn(format="%.1f"),
+            "Reach Rate":     st.column_config.NumberColumn(format="%.1f"),
+            "Consensus Rate": st.column_config.NumberColumn(format="%.1f"),
+        }
     )
 
     st.markdown("""
