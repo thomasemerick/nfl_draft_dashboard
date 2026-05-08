@@ -290,7 +290,7 @@ with tab1:
     )
 
 # ════════════════════════════════
-# TAB 2 — Quadrant Chart
+# TAB 2 — YMMV Quadrants
 # ════════════════════════════════
 with tab2:
     st.subheader("Trade Capital vs Player Selection Value")
@@ -370,7 +370,7 @@ with tab2:
     y_max = summary_df["total_value_diff"].max()
 
     quadrant_labels = [
-        (x_max * 0.75, y_max * 0.80, "Caught Value on Consensus Board<br>Gained Value on Pick Swaps", "#1D9E75"),
+        (x_max * 0.75, y_max * 0.90, "Caught Value on Consensus Board<br>Gained Value on Pick Swaps", "#1D9E75"),
         (x_min * 0.65, y_max * 0.98, "Caught Value on Consensus Board<br>Lost Value on Pick Swaps",   "#378ADD"),
         (x_max * 0.75, y_min * 0.80, "Reached vs Consensus Board<br>Gained Value on Pick Swaps",      "#BA7517"),
         (x_min * 0.75, y_min * 0.80, "Reached vs Consensus Board<br>Lost Value on Pick Swaps",        "#CC3333"),
