@@ -304,7 +304,7 @@ with tab1:
         return styles
 
     st.dataframe(
-        styled.style.apply(style_table, axis=None),
+        styled.round(1).style.apply(style_table, axis=None),
         use_container_width=True,
         hide_index=True
     )
