@@ -305,21 +305,23 @@ with tab1:
             styles[col] = styles[col] + "; text-align: center"
         return styles
 
-    st.dataframe(
-        styled,
-        use_container_width=True,
-        hide_index=True,
-        column_config={
-            "Team":           st.column_config.TextColumn(),
-            "Pick Value Net": st.column_config.NumberColumn(),
-            "Trade Value Net":st.column_config.NumberColumn(),
-            "Adj Total":      st.column_config.NumberColumn(),
-            "Score":          st.column_config.NumberColumn(format="%.1f"),
-            "Grade":          st.column_config.TextColumn(),
-            "Value Rate":     st.column_config.NumberColumn(format="%.1f"),
-            "Reach Rate":     st.column_config.NumberColumn(format="%.1f"),
-            "Consensus Rate": st.column_config.NumberColumn(format="%.1f"),
-        }
+    st.markdown("""
+    <style>
+    table { width: 100%; border-collapse: collapse; }
+    th { text-align: center !important; font-weight: 600; padding: 8px; border-bottom: 2px solid #ddd; }
+    td { text-align: center; padding: 8px; border-bottom: 1px solid #eee; }
+    td:first-child { text-align: left; font-weight: bold; }
+    th:first-child { text-align: left !important; }
+    </style>
+    """, unsafe_allow_html=True)
+
+    st.table(
+        styled.style.format({
+            "Score":          "{:.1f}",
+            "Value Rate":     "{:.1f}",
+            "Reach Rate":     "{:.1f}",
+            "Consensus Rate": "{:.1f}",
+        })
     )
 
     st.markdown("""
