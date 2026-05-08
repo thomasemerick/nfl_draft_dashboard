@@ -321,7 +321,7 @@ with tab1:
             "Value Rate":     "{:.1f}",
             "Reach Rate":     "{:.1f}",
             "Consensus Rate": "{:.1f}",
-        })
+        }).set_properties(subset=["Team"], **{"font-weight": "bold"})
     )
 
     st.markdown("""
