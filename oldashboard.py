@@ -296,9 +296,6 @@ with tab3:
         for i in range(6)
     })
 
-    # Drop column 0 if empty
-    bucket_df = bucket_df[[c for c in bucket_df.columns if c != "0" or any(bucket_df["0"] != "")]]
-
     def color_bucket(val):
         if val == "": return ""
         col = val.name if hasattr(val, 'name') else ""
@@ -306,7 +303,7 @@ with tab3:
         return ""
 
     # Style header colors
-    col_colors = {"1":"#CC3333","2":"#e07b7b","3":"#FFD580","4":"#90D4B5","5":"#1D9E75"}
+    col_colors = {"0":"#8B0000","1":"#CC3333","2":"#e07b7b","3":"#FFD580","4":"#90D4B5","5":"#1D9E75"}
 
     styled_bucket = bucket_df.style.apply(
         lambda col: [
