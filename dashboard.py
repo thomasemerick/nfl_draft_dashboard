@@ -308,8 +308,7 @@ with tab1:
 
     st.markdown("")
     st.markdown("""
-Each draft slot is attributed points via the Fitzgerald-Spielberger chart and consensus mock draft slot comes from Arif Hasan's consensus mock draft board. Adj Total maps directly to Score and Grades, and is the aggregate of net points from 1) pick # for player relative to mock draft consensus board # AND 2) draft capital advantage on pure pick swap deals.
-""")
+Each draft slot is attributed points via the Fitzgerald-Spielberger chart and consensus mock draft slot comes from Arif Hasan's consensus mock draft board.<br><br>Adj Total translates directly to Score and Grades, and is the aggregate of net points from 1) pick # for player relative to mock draft consensus board # AND 2) draft capital advantage on pure pick swap deals.""")
 
 # ════════════════════════════════
 # TAB 2 — YMMV Quadrants
