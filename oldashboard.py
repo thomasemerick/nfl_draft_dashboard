@@ -150,63 +150,59 @@ with tab1:
 # ════════════════════════════════
 # TAB 2 — OL Visualizer
 # ════════════════════════════════
-with tab2:
-    st.subheader("Team OL Lineup Visualizer")
-    selected_team = st.selectbox("Select Team", sorted(merged["team"].unique()))
-
-    team_ol = merged[merged["team"] == selected_team].copy()
-
-    # Position order left to right
-    pos_order = ["LT","LG","C","RG","RT"]
-    pos_labels = {"LT":"Left Tackle","LG":"Left Guard","C":"Center","RG":"Right Guard","RT":"Right Tackle"}
-    team_ol["pos_order"] = team_ol["pos_abb"].map({p:i for i,p in enumerate(pos_order)})
-    team_ol = team_ol.sort_values("pos_order")
-
-    fig = go.Figure()
-
-    for _, row in team_ol.iterrows():
-        color = "#378ADD" if row["designation"] == "Incumbent" else "#FFD580"
-        text_color = "white" if row["designation"] == "Incumbent" else "black"
+for _, row in team_ol.iterrows():
+        is_incumbent = row["designation"] == "Incumbent"
+        is_rookie = row["designation"] == "Rookie"
+        color = "#378ADD" if is_incumbent else "#FFD580"
+        text_color = "white" if is_incumbent else "black"
         x_pos = pos_order.index(row["pos_abb"])
 
-        # Box
+        # Main box
         fig.add_shape(
             type="rect",
             x0=x_pos - 0.45, x1=x_pos + 0.45,
-            y0=0.1, y1=0.9,
+            y0=0.25, y1=0.95,
             fillcolor=color,
             line=dict(color="white", width=2)
         )
 
         # Player name
         fig.add_annotation(
-            x=x_pos, y=0.65,
+            x=x_pos, y=0.68,
             text=f"<b>{row['player_name']}</b>",
             showarrow=False,
-            font=dict(size=13, color=text_color),
-            align="center"
-        )
-
-        # Designation
-        fig.add_annotation(
-            x=x_pos, y=0.45,
-            text=row["designation"],
-            showarrow=False,
-            font=dict(size=11, color=text_color),
+            font=dict(size=20, color=text_color),
             align="center"
         )
 
         # Position label
         fig.add_annotation(
-            x=x_pos, y=0.25,
+            x=x_pos, y=0.42,
             text=pos_labels[row["pos_abb"]],
             showarrow=False,
-            font=dict(size=10, color=text_color),
+            font=dict(size=15, color=text_color),
             align="center"
         )
 
+        # Rookie tag underneath
+        if is_rookie:
+            fig.add_shape(
+                type="rect",
+                x0=x_pos - 0.45, x1=x_pos + 0.45,
+                y0=0.08, y1=0.22,
+                fillcolor="#2ECC71",
+                line=dict(color="white", width=2)
+            )
+            fig.add_annotation(
+                x=x_pos, y=0.15,
+                text="<b>ROOKIE</b>",
+                showarrow=False,
+                font=dict(size=13, color="white"),
+                align="center"
+            )
+
     fig.update_layout(
-        height=300,
+        height=320,
         xaxis=dict(showticklabels=False, showgrid=False, zeroline=False, range=[-0.6, 4.6]),
         yaxis=dict(showticklabels=False, showgrid=False, zeroline=False, range=[0, 1]),
         plot_bgcolor="rgba(0,0,0,0)",
@@ -217,20 +213,10 @@ with tab2:
 
     st.plotly_chart(fig, use_container_width=True)
 
-    # Legend
-    col1, col2, col3, col4 = st.columns(4)
-    col1.markdown("🔵 **Incumbent** — returning starter")
-    col2.markdown("🟡 **New** — FA or trade acquisition")
-    col3.markdown("🟡 **Rookie** — 2026 draft pick")
-    col4.markdown("🟡 **IR Return** — returning from injury")
-
-    # Detail table
-    st.dataframe(
-        team_ol[["pos_abb","player_name","designation"]].rename(columns={
-            "pos_abb":"Position","player_name":"Player","designation":"Status"
-        }).reset_index(drop=True),
-        use_container_width=True, hide_index=True
-    )
+    # Simple legend
+    col1, col2 = st.columns(2)
+    col1.markdown("🔵 **Incumbent** — returning starter from 2025")
+    col2.markdown("🟡 **Non-Incumbent** — new addition, IR return, or rookie")
 
 # ════════════════════════════════
 # TAB 3 — League Overview
