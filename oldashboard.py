@@ -229,8 +229,8 @@ with tab2:
 
     # Simple legend
     col1, col2 = st.columns(2)
-    col1.markdown("🔵 **Incumbent** — returning starter from 2025")
-    col2.markdown("🟡 **Non-Incumbent** — new addition, IR return, or rookie")
+    col1.markdown("🔵 **Incumbent** — took more than 50% snaps or started Week 1 on same team the prior year.")
+    col2.markdown("🟡 **Non-Incumbent** — did not meet incumbent threshold")
 
 # ════════════════════════════════
 # TAB 3 — League Overview
