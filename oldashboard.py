@@ -306,6 +306,7 @@ with tab3:
 
     st.dataframe(styled_bucket, use_container_width=True, hide_index=True, 
                  height=(max_len + 1) * 35 + 10)
+    })
 
     def color_bucket(val):
         if val == "": return ""
