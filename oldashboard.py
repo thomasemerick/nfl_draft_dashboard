@@ -285,10 +285,11 @@ with tab3:
     st.subheader("Starting OL Continuity: Total Incumbents")
     st.caption("Incumbents = took more than 50% snaps or started Week 1 on same team last year.")
 
-    # Build bucket columns 1-5
+    col_colors = {"0":"#8B0000","1":"#CC3333","2":"#e07b7b","3":"#FFD580","4":"#90D4B5","5":"#1D9E75"}
+
     buckets = {i: [] for i in range(6)}
     for _, row in team_summary.iterrows():
-        buckets[row["incumbents"]].append(row["team"])
+        buckets[int(row["incumbents"])].append(row["team"])
 
     max_len = max(len(v) for v in buckets.values())
     bucket_df = pd.DataFrame({
@@ -296,33 +297,14 @@ with tab3:
         for i in range(6)
     })
 
-    styled_bucket = bucket_df.style.apply(
-        lambda col: [
+    def style_buckets(col):
+        return [
             f"background-color: {col_colors.get(col.name, 'white')}; color: white; font-weight: bold; text-align: center"
             if v != "" else ""
             for v in col
-        ], axis=0
-    )
+        ]
 
-    st.dataframe(styled_bucket, use_container_width=True, hide_index=True, 
+    styled_bucket = bucket_df.style.apply(style_buckets, axis=0)
+
+    st.dataframe(styled_bucket, use_container_width=True, hide_index=True,
                  height=(max_len + 1) * 35 + 10)
-    
-
-    def color_bucket(val):
-        if val == "": return ""
-        col = val.name if hasattr(val, 'name') else ""
-        colors = {"1":"#CC3333","2":"#CC3333","3":"#FFD580","4":"#90D4B5","5":"#1D9E75"}
-        return ""
-
-    # Style header colors
-    col_colors = {"0":"#8B0000","1":"#CC3333","2":"#e07b7b","3":"#FFD580","4":"#90D4B5","5":"#1D9E75"}
-
-    styled_bucket = bucket_df.style.apply(
-        lambda col: [
-            f"background-color: {col_colors.get(col.name, 'white')}; color: white; font-weight: bold; text-align: center"
-            if v != "" else ""
-            for v in col
-        ], axis=0)
-  
-
-    st.dataframe(styled_bucket, use_container_width=True, hide_index=True)
