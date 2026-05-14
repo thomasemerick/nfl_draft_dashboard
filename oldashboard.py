@@ -296,6 +296,17 @@ with tab3:
         for i in range(6)
     })
 
+    styled_bucket = bucket_df.style.apply(
+        lambda col: [
+            f"background-color: {col_colors.get(col.name, 'white')}; color: white; font-weight: bold; text-align: center"
+            if v != "" else ""
+            for v in col
+        ], axis=0
+    )
+
+    st.dataframe(styled_bucket, use_container_width=True, hide_index=True, 
+                 height=(max_len + 1) * 35 + 10)
+
     def color_bucket(val):
         if val == "": return ""
         col = val.name if hasattr(val, 'name') else ""
