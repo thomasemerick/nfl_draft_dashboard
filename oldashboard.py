@@ -229,7 +229,7 @@ with tab2:
 
     # Simple legend
     col1, col2 = st.columns(2)
-    col1.markdown("🔵 **Incumbent** — took more than 50% snaps or started Week 1 on same team the prior year.")
+    col1.markdown("🔵 **Incumbent** — took more than 50% snaps or started Week 1 on same team in 2025.")
     col2.markdown("🟡 **Non-Incumbent** — did not meet incumbent threshold")
 
 # ════════════════════════════════
