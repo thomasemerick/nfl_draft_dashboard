@@ -319,12 +319,12 @@ with tab2:
 
     def quadrant_color(row):
         if row["trade_capital_net"] >= 0 and row["total_value_diff"] >= 0:
-            return "Caught Value / Gained Picks"
+            return "Caught Value / Trade Net Positive"
         if row["trade_capital_net"] <  0 and row["total_value_diff"] >= 0:
-            return "Caught Value / Lost Picks"
+            return "Caught Value / Trade Net Negative"
         if row["trade_capital_net"] >= 0 and row["total_value_diff"] <  0:
-            return "Reached / Gained Picks"
-        return "Reached / Lost Picks"
+            return "Reached vs Board / Trade Net Positive"
+        return "Reached vs Board / Trade Net Negative"
 
     summary_df["quadrant"] = summary_df.apply(quadrant_color, axis=1)
 
