@@ -329,10 +329,10 @@ with tab2:
     summary_df["quadrant"] = summary_df.apply(quadrant_color, axis=1)
 
     color_map = {
-        "Caught Value / Gained Picks": "#1D9E75",
-        "Caught Value / Lost Picks":   "#378ADD",
-        "Reached / Gained Picks":      "#BA7517",
-        "Reached / Lost Picks":        "#CC3333"
+        "Caught Value / Trade Net Positive": "#1D9E75",
+        "Caught Value / Trade Net Negative":   "#378ADD",
+        "Reached vs Board / Trade Net Positive":      "#BA7517",
+        "Reached vs Board / Trade Net Negative":        "#CC3333"
     }
 
     fig = px.scatter(
