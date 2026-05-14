@@ -322,11 +322,7 @@ with tab3:
             f"background-color: {col_colors.get(col.name, 'white')}; color: white; font-weight: bold; text-align: center"
             if v != "" else ""
             for v in col
-        ], axis=0
-    ).set_table_styles([
-        {"selector": f"th.col_heading.col{i}",
-         "props": [("background-color", list(col_colors.values())[i]), ("color", "white"), ("font-weight", "bold"), ("text-align", "center")]}
-        for i in range(len(col_colors))
-    ])
+        ], axis=0)
+  
 
     st.dataframe(styled_bucket, use_container_width=True, hide_index=True)
