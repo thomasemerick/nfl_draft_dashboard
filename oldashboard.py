@@ -150,7 +150,21 @@ with tab1:
 # ════════════════════════════════
 # TAB 2 — OL Visualizer
 # ════════════════════════════════
-for _, row in team_ol.iterrows():
+with tab2:
+    st.subheader("Team OL Lineup Visualizer")
+    selected_team = st.selectbox("Select Team", sorted(merged["team"].unique()))
+
+    team_ol = merged[merged["team"] == selected_team].copy()
+
+    # Position order left to right
+    pos_order = ["LT","LG","C","RG","RT"]
+    pos_labels = {"LT":"Left Tackle","LG":"Left Guard","C":"Center","RG":"Right Guard","RT":"Right Tackle"}
+    team_ol["pos_order"] = team_ol["pos_abb"].map({p:i for i,p in enumerate(pos_order)})
+    team_ol = team_ol.sort_values("pos_order")
+
+    fig = go.Figure()
+
+    for _, row in team_ol.iterrows():
         is_incumbent = row["designation"] == "Incumbent"
         is_rookie = row["designation"] == "Rookie"
         color = "#378ADD" if is_incumbent else "#FFD580"
