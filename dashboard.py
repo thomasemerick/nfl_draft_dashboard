@@ -354,37 +354,6 @@ with tab2:
     fig.add_vline(x=0, line_width=1, line_color="black")
     fig.update_layout(height=600)
 
-    # Team labels with manual nudge for WAS/CAR overlap
-    for _, row in summary_df.iterrows():
-        if row["team"] == "WAS":
-            fig.add_annotation(
-                x=row["trade_capital_net"],
-                y=row["total_value_diff"],
-                text="WAS",
-                ax=0, ay=-15,
-                font=dict(size=9, color="black"),
-                bgcolor="rgba(255,255,255,0.7)"
-            )
-        elif row["team"] == "CAR":
-            fig.add_annotation(
-                x=row["trade_capital_net"],
-                y=row["total_value_diff"],
-                text="CAR",
-                ax=0, ay=-25,
-                font=dict(size=9, color="black"),
-                bgcolor="rgba(255,255,255,0.7)"
-            )
-        else:
-            fig.add_annotation(
-                x=row["trade_capital_net"],
-                y=row["total_value_diff"],
-                text=row["team"],
-                showarrow=False,
-                yshift=12,
-                font=dict(size=9, color="black"),
-                bgcolor="rgba(255,255,255,0.7)"
-            )
-
     # Quadrant labels
     x_min = summary_df["trade_capital_net"].min()
     x_max = summary_df["trade_capital_net"].max()
