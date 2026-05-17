@@ -1,5 +1,5 @@
 import streamlit as st
-
+# Home
 st.set_page_config(page_title="Viztas", page_icon="📊", layout="wide")
 st.markdown("""
     <style>
