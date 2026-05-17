@@ -273,6 +273,17 @@ tab1, tab2, tab3, tab4 = st.tabs(["📊 Team Grades", "🔵 YMMV Quadrants", "�
 # TAB 1 — Team Grades
 # ════════════════════════════════
 
+def score_to_grade(score):
+    if score >= 9.6: return "A+"
+    if score >= 9.0: return "A"
+    if score >= 8.0: return "B+"
+    if score >= 7.0: return "B"
+    if score >= 6.0: return "B-"
+    if score >= 5.0: return "C+"
+    if score >= 4.0: return "C"
+    if score >= 3.0: return "D"
+    if score >= 2.0: return "F"
+    return "F-"
 
 # Normalize total_value_diff to 0-10 for Pick Grade
 vd_min = summary_df["total_value_diff"].min()
