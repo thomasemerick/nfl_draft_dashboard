@@ -136,7 +136,7 @@ st.divider()
 tab1, tab2, tab3, tab4 = st.tabs(["📊 League Overview", "🔵 Team Breakdown", "🏆 Continuity Visualization", "📈 Historical"])
 
 # ════════════════════════════════
-# TAB 1 — Team Continuity Table
+# TAB 1 — OL Continuity Table
 # ════════════════════════════════
 with tab1:
     st.subheader("Starting Offensive Lines in 2026: Total Returning Starters by Team")
@@ -179,10 +179,10 @@ with tab1:
 """)
 
 # ════════════════════════════════
-# TAB 2 — OL Visualizer
+# TAB 2 — Team View
 # ════════════════════════════════
 with tab2:
-    st.subheader("Team OL Continuity Visualizer")
+    st.subheader("Team View")
     selected_team = st.selectbox("Select Team", sorted(merged["team"].unique()))
 
     team_ol = merged[merged["team"] == selected_team].copy()
