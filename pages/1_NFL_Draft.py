@@ -310,7 +310,16 @@ with tab1:
         "reach_rate":       "Reach Rate",
         "consensus_rate":   "Consensus Rate"
     }).sort_values("Combined Score", ascending=False).reset_index(drop=True)
-
+st.dataframe(
+        styled.style.format({
+            "Combined Score": "{:.1f}",
+            "Value Rate":     "{:.1f}",
+            "Reach Rate":     "{:.1f}",
+            "Consensus Rate": "{:.1f}",
+        }),
+        use_container_width=True,
+        hide_index=True
+    )
     st.markdown("")
     st.markdown("""
 Each draft slot is attributed points via the Fitzgerald-Spielberger chart and consensus mock draft slot comes from Arif Hasan's consensus mock draft board.
