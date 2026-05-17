@@ -6,6 +6,13 @@ from collections import defaultdict
 
 # ── Page config ──
 st.set_page_config(
+    st.markdown("""
+    <style>
+    [data-testid="stSidebarNavItems"] li:first-child {
+        display: none;
+    }
+    </style>
+""", unsafe_allow_html=True)
     page_title="2026 NFL Draft Dashboard",
     page_icon="🏈",
     layout="wide"

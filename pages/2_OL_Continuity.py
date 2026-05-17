@@ -6,7 +6,13 @@ import nflreadpy as nfl
 import re
 
 st.set_page_config(page_title="2026 NFL OL Continuity", page_icon="🏈", layout="wide")
-
+st.markdown("""
+    <style>
+    [data-testid="stSidebarNavItems"] li:first-child {
+        display: none;
+    }
+    </style>
+""", unsafe_allow_html=True)
 # ── Data loading ──
 @st.cache_data
 def load_data():
