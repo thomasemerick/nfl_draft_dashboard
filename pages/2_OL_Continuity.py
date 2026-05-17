@@ -136,7 +136,7 @@ st.divider()
 tab1, tab2, tab3, tab4 = st.tabs(["📊 League Overview", "🔵 Team Breakdown", "🏆 Continuity Visualization", "📈 Historical"])
 
 # ════════════════════════════════
-# TAB 1 — Team Stability Table
+# TAB 1 — Team Continuity Table
 # ════════════════════════════════
 with tab1:
     st.subheader("Starting Offensive Lines in 2026: Total Returning Starters by Team")
@@ -278,7 +278,7 @@ with tab2:
 # TAB 3 — League Overview
 # ════════════════════════════════
 with tab3:
-    st.subheader("League-Wide OL Stability Overview")
+    st.subheader("2026 League-Wide OL Continuity Overview")
 
     col1, col2 = st.columns(2)
 
@@ -321,7 +321,7 @@ with tab3:
     
 
    # Returning Starter bucket table
-    st.subheader("Starting OL Continuity: Total Returning Starters")
+    st.subheader("Starting OL Continuity: Total Returning Starters in 2026")
     st.caption("Returning Starters = took more than 50% snaps or started Week 1 on same team last year.")
 
     col_colors = {"0":"#8B0000","1":"#CC3333","2":"#e07b7b","3":"#FFD580","4":"#90D4B5","5":"#1D9E75"}
@@ -358,7 +358,7 @@ with tab3:
         st.write("No rookie starters found.")
 
     st.divider()
-    
+
     # ════════════════════════════════
 # TAB 4 — Historical OL Continuity
 # ════════════════════════════════
