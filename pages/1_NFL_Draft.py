@@ -276,8 +276,8 @@ with tab1:
     st.subheader("Team Draft Grades")
     st.markdown("Grades reflect the total value teams generated during 2026 NFL Draft weekend. Metrics explained below table.")
 
-    display_cols = ["team","total_value_diff","trade_capital_net",
-                    "adj_total","score","grade","value_rate","reach_rate","consensus_rate"]
+    display_cols = ["team","grade""total_value_diff","trade_capital_net",
+                    "adj_total","score","value_rate","reach_rate","consensus_rate"]
 
     styled = summary_df[display_cols].rename(columns={
         "team":             "Team",
