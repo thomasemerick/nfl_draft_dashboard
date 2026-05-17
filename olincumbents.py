@@ -39,22 +39,34 @@ print(ol_snaps["position"].value_counts())
 # Week 1 starter = offense_pct >= 0.5 in week 1
 # Full season incumbent = avg offense_pct >= 0.5 across season
 
-week1_snaps = snaps[
+week1 = snaps[
     (snaps["week"] == 1) &
+    (snaps["game_type"] == "REG") &
     (snaps["position"].isin(["T","G","C","OL"]))
 ][["player","team","offense_pct"]].copy()
-week1_snaps["week1_starter"] = week1_snaps["offense_pct"] >= 0.5
+week1["week1_starter"] = week1["offense_pct"] >= 0.5
 
-season_snaps = snaps[
-    snaps["position"].isin(["T","G","C","OL"])
-].groupby(["player","team"]).agg(
-    avg_offense_pct=("offense_pct","mean")
+# Use total snaps divided by team's total offensive snaps for true pct
+ol_snaps_raw = snaps[(snaps["position"].isin(["T","G","C","OL"])) & (snaps["game_type"] == "REG")].copy()
+
+# Total offensive snaps per player per team
+player_totals = ol_snaps_raw.groupby(["player","team"]).agg(
+    total_snaps=("offense_snaps","sum")
 ).reset_index()
-season_snaps["season_incumbent"] = season_snaps["avg_offense_pct"] >= 0.5
+
+# Total offensive snaps per team across season (use max per game to avoid double counting)
+team_totals = snaps[snaps["game_type"]=="REG"].groupby(["team","game_id"]).agg(
+    max_snaps=("offense_snaps","max")
+).reset_index().groupby("team")["max_snaps"].sum().reset_index()
+team_totals.columns = ["team","team_total_snaps"]
+
+season_snaps = player_totals.merge(team_totals, on="team", how="left")
+season_snaps["avg_offense_pct"] = season_snaps["total_snaps"] / season_snaps["team_total_snaps"]
+season_snaps["season_incumbent"] = season_snaps["avg_offense_pct"] >= 0.50
 
 # Merge both into one snap summary
 snap_summary = season_snaps.merge(
-    week1_snaps[["player","team","week1_starter"]],
+    week1[["player","team","week1_starter"]],
     on=["player","team"],
     how="left"
 )
@@ -107,8 +119,19 @@ def clean_name(name):
     name = re.sub(r'\s+(Jr\.|Sr\.|II|III|IV)$', '', str(name).strip())
     return name.strip()
 
-starters_2026["player_clean"] = starters_2026["player_name"].apply(clean_name)
-snap_summary["player_clean"] = snap_summary["player"].apply(clean_name)
+nickname_map = {
+    "Delmar Glaze": "DJ Glaze",
+    "Michael Onwenu": "Mike Onwenu",
+    "Olu Fashanu": "Olumuyiwa Fashanu",
+}
+
+def normalize_name(name):
+    name = clean_name(name)
+    return nickname_map.get(name, name)
+
+starters_2026["player_clean"] = starters_2026["player_name"].apply(normalize_name)
+snap_summary["player_clean"] = snap_summary["player"].apply(normalize_name)
+rosters_2025["full_name_clean"] = rosters_2025["full_name"].apply(normalize_name)
 
 # Merge on cleaned name + team
 merged = starters_2026.merge(
@@ -174,13 +197,16 @@ def get_designation(row):
     ]
     if len(match) > 0:
         status = match.iloc[0]["status"]
-        if status == "RES":
-            return "IR Return"
+        avg_pct = row.get("avg_offense_pct", 0)
+        if pd.isna(avg_pct):
+            avg_pct = 0
+        if status == "RES" and avg_pct == 0:
+            return "Missed Year"
+        elif status == "RES" and avg_pct > 0:
+            return "Full-time Jump"
         else:
-            return "New"
-
-    # Not found on same team's roster at all
-    return "New"
+            return "Full-time Jump"
+    return "Free Agent / Trade"
 
 merged["designation"] = merged.apply(get_designation, axis=1)
 
@@ -203,3 +229,17 @@ print(team_summary.sort_values("Incumbent", ascending=False).to_string(index=Fal
 # Save to CSV
 summary.to_csv("ol_incumbents_2026.csv", index=False)
 print("\nSaved to ol_incumbents_2026.csv")
+
+print(snap_summary[snap_summary["player"] == "Anthony Belton"])
+
+print(snap_summary[snap_summary["player"] == "Anthony Belton"][["player","team","avg_offense_pct","week1_starter","season_incumbent"]])
+
+# Get total offensive snaps per team per season from all players
+# Use a high-snap skill position player as proxy for total team offensive plays
+team_totals = snaps[
+    (snaps["game_type"] == "REG") & 
+    (snaps["position"].isin(["T","G","C","OL"]))
+].groupby(["team","game_id"])["offense_snaps"].max().reset_index()
+
+team_totals = team_totals.groupby("team")["offense_snaps"].sum().reset_index()
+team_totals.columns = ["team","team_total_snaps"]
