@@ -6,7 +6,7 @@ import nflreadpy as nfl
 import re
 
 st.set_page_config(page_title="2026 NFL OL Continuity", page_icon="🏈", layout="wide")
-st.markdown("[← Viztas Home](/) | Data science apps from the lens of Thomas Emerick")
+st.markdown("[Viztas Home](/) | Data science apps from the lens of Thomas Emerick")
 st.divider()
 st.markdown("""
     <style>
