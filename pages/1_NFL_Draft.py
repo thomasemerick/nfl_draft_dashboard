@@ -281,11 +281,11 @@ with tab1:
 
     styled = summary_df[display_cols].rename(columns={
         "team":             "Team",
+        "grade":            "Grade",
         "total_value_diff": "Pick Value Net",
         "trade_capital_net":"Trade Value Net",
         "adj_total":        "Adj Total",
         "score":            "Score",
-        "grade":            "Grade",
         "value_rate":       "Value Rate",
         "reach_rate":       "Reach Rate",
         "consensus_rate":   "Consensus Rate"
