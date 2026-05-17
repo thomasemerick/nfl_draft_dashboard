@@ -190,7 +190,7 @@ with tab1:
 # TAB 2 — Team View
 # ════════════════════════════════
 with tab2:
-    st.subheader("Team View")
+    st.subheader("Choose Team")
     selected_team = st.selectbox("Select Team", sorted(merged["team"].unique()))
 
     team_ol = merged[merged["team"] == selected_team].copy()
@@ -451,7 +451,7 @@ with tab4:
         use_container_width=True, hide_index=True
     )
 
-    st.caption("*Yards = total offense during regular season.*")
+    st.caption("*Yardage totals only include regular season play.*")
     if selected_teams:
         # Team view
         st.subheader("Returning Starters Over Time")
