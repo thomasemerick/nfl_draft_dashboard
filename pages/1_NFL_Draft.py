@@ -356,7 +356,12 @@ with tab2:
         }
     )
 
-    fig.update_traces(marker=dict(size=12))
+    fig.update_traces(
+        marker=dict(size=12),
+        text=summary_df["team"],
+        textposition="top center",
+        mode="markers+text"
+    )
     fig.add_hline(y=0, line_width=1, line_color="black")
     fig.add_vline(x=0, line_width=1, line_color="black")
     fig.update_layout(height=600)
