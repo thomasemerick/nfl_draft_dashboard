@@ -297,7 +297,7 @@ with tab1:
     st.markdown("Grades reflect the total value teams generated during 2026 NFL Draft weekend. Metrics explained below table.")
 
     display_cols = ["team","pick_grade","pick_score","total_value_diff","trade_capital_net",
-                    "adj_total","score","value_rate","reach_rate","consensus_rate"]
+                    "adj_total","value_rate","reach_rate","consensus_rate"]
 
     styled = summary_df[display_cols].sort_values("pick_score", ascending=False).drop(columns=["pick_score"]).rename(columns={
         "team":             "Team",
@@ -305,14 +305,12 @@ with tab1:
         "total_value_diff": "Pick Value Net",
         "trade_capital_net":"Trade Value Net",
         "adj_total":        "Adj Total",
-        "score":            "Combined Score",
         "value_rate":       "Value Rate",
         "reach_rate":       "Reach Rate",
         "consensus_rate":   "Consensus Rate"
     }).reset_index(drop=True)
     st.dataframe(
             styled.style.format({
-                "Combined Score": "{:.1f}",
                 "Value Rate":     "{:.1f}",
                 "Reach Rate":     "{:.1f}",
                 "Consensus Rate": "{:.1f}",
