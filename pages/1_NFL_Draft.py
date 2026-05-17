@@ -10,6 +10,8 @@ st.set_page_config(
     page_icon="🏈",
     layout="wide"
 )
+st.markdown("[← Viztas Home](/) | *Data science apps from the lens of Thomas Emerick*")
+st.divider()
 st.markdown("""
     <style>
     [data-testid="stSidebarNavItems"] li:first-child {
