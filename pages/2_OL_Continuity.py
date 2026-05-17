@@ -129,7 +129,7 @@ def load_data():
 merged, team_summary = load_data()
 
 # ── Header ──
-st.title("🏈 2026 NFL Offensive Line Continuity")
+st.title("🏈 NFL Offensive Line Continuity Explorer")
 st.markdown("*Quantifying year-over-year continuity for projected starting units across the league*")
 st.divider()
 
@@ -139,7 +139,7 @@ tab1, tab2, tab3, tab4 = st.tabs(["📊 OL Continuity", "🔵 OL Visualizer", "�
 # TAB 1 — Team Stability Table
 # ════════════════════════════════
 with tab1:
-    st.subheader("Starting Offensive Lines: Total Returning Starters by Team")
+    st.subheader("Starting Offensive Lines in 2026: Total Returning Starters by Team")
 
     # Build bucket columns 0-5
     display = team_summary[["team","incumbents","Returning Starter","Full-time Jump","Free Agent / Trade","Rookie","Missed Year"]].copy()
