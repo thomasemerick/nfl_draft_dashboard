@@ -365,7 +365,6 @@ with tab3:
     else:
         st.write("No rookie starters found.")
 
-    st.divider()
 
     # ════════════════════════════════
 # TAB 4 — Historical OL Continuity
