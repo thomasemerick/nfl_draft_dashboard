@@ -272,19 +272,7 @@ tab1, tab2, tab3, tab4 = st.tabs(["📊 Team Grades", "🔵 YMMV Quadrants", "�
 # ════════════════════════════════
 # TAB 1 — Team Grades
 # ════════════════════════════════
-# Calculate Pick Grade and Trade Grade
-def score_to_grade(score):
-    if score >= 9.6: return "A+"
-    if score >= 9.0: return "A+"
-    if score >= 8.0: return "A"
-    if score >= 7.0: return "B+"
-    if score >= 6.0: return "B"
-    if score >= 5.0: return "B-"
-    if score >= 4.0: return "C+"
-    if score >= 3.0: return "C"
-    if score >= 2.0: return "D"
-    if score >= 1.0: return "F"
-    return "F-"
+
 
 # Normalize total_value_diff to 0-10 for Pick Grade
 vd_min = summary_df["total_value_diff"].min()
@@ -292,24 +280,18 @@ vd_max = summary_df["total_value_diff"].max()
 summary_df["pick_score"] = ((summary_df["total_value_diff"] - vd_min) / (vd_max - vd_min) * 10).clip(0, 10)
 summary_df["pick_grade"] = summary_df["pick_score"].apply(score_to_grade)
 
-# Normalize trade_capital_net to 0-10 for Trade Grade
-tc_min = summary_df["trade_capital_net"].min()
-tc_max = summary_df["trade_capital_net"].max()
-summary_df["trade_score"] = ((summary_df["trade_capital_net"] - tc_min) / (tc_max - tc_min) * 10).clip(0, 10)
-summary_df["trade_grade"] = summary_df["trade_score"].apply(score_to_grade)
 
 with tab1:
     st.subheader("Team Draft Grades")
     st.markdown("Grades reflect the total value teams generated during 2026 NFL Draft weekend. Metrics explained below table.")
 
-    display_cols = ["team","pick_grade","total_value_diff","trade_grade","trade_capital_net",
+    display_cols = ["team","pick_grade","total_value_diff","trade_capital_net",
                     "adj_total","score","value_rate","reach_rate","consensus_rate"]
 
     styled = summary_df[display_cols].rename(columns={
         "team":             "Team",
         "pick_grade":       "Pick Grade",
         "total_value_diff": "Pick Value Net",
-        "trade_grade":      "Trade Grade",
         "trade_capital_net":"Trade Value Net",
         "adj_total":        "Adj Total",
         "score":            "Combined Score",
