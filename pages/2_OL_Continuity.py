@@ -133,7 +133,7 @@ st.title("🏈 NFL Offensive Line Continuity Explorer")
 st.markdown("*Quantifying year-over-year continuity for projected starting units across the league*")
 st.divider()
 
-tab1, tab2, tab3, tab4 = st.tabs(["📊 OL Continuity", "🔵 OL Visualizer", "🏆 League Overview", "📈 Historical"])
+tab1, tab2, tab3, tab4 = st.tabs(["📊 League Overview", "🔵 Team Breakdown", "🏆 Continuity Visualization", "📈 Historical"])
 
 # ════════════════════════════════
 # TAB 1 — Team Stability Table
@@ -177,34 +177,6 @@ with tab1:
 **Rookie** — 2026 draft pick or 2026 rookie UDFA signing   
 **Missed Year** — on the same 2025 roster but did not play a snap
 """)
-    
-    # Returning Starter bucket table
-    st.subheader("Starting OL Continuity: Total Returning Starters")
-    st.caption("Returning Starters = took more than 50% snaps or started Week 1 on same team last year.")
-
-    col_colors = {"0":"#8B0000","1":"#CC3333","2":"#e07b7b","3":"#FFD580","4":"#90D4B5","5":"#1D9E75"}
-
-    buckets = {i: [] for i in range(6)}
-    for _, row in team_summary.iterrows():
-        buckets[int(row["incumbents"])].append(row["team"])
-
-    max_len = max(len(v) for v in buckets.values())
-    bucket_df = pd.DataFrame({
-        str(i): buckets[i] + [""] * (max_len - len(buckets[i]))
-        for i in range(6)
-    })
-
-    def style_buckets(col):
-        return [
-            f"background-color: {col_colors.get(col.name, 'white')}; color: white; font-weight: bold; text-align: center"
-            if v != "" else ""
-            for v in col
-        ]
-
-    styled_bucket = bucket_df.style.apply(style_buckets, axis=0)
-
-    st.dataframe(styled_bucket, use_container_width=True, hide_index=True,
-                 height=(max_len + 1) * 35 + 10)
 
 # ════════════════════════════════
 # TAB 2 — OL Visualizer
@@ -355,8 +327,35 @@ with tab3:
     else:
         st.write("No rookie starters found.")
 
+    st.divider()
 
-   
+   # Returning Starter bucket table
+    st.subheader("Starting OL Continuity: Total Returning Starters")
+    st.caption("Returning Starters = took more than 50% snaps or started Week 1 on same team last year.")
+
+    col_colors = {"0":"#8B0000","1":"#CC3333","2":"#e07b7b","3":"#FFD580","4":"#90D4B5","5":"#1D9E75"}
+
+    buckets = {i: [] for i in range(6)}
+    for _, row in team_summary.iterrows():
+        buckets[int(row["incumbents"])].append(row["team"])
+
+    max_len = max(len(v) for v in buckets.values())
+    bucket_df = pd.DataFrame({
+        str(i): buckets[i] + [""] * (max_len - len(buckets[i]))
+        for i in range(6)
+    })
+
+    def style_buckets(col):
+        return [
+            f"background-color: {col_colors.get(col.name, 'white')}; color: white; font-weight: bold; text-align: center"
+            if v != "" else ""
+            for v in col
+        ]
+
+    styled_bucket = bucket_df.style.apply(style_buckets, axis=0)
+
+    st.dataframe(styled_bucket, use_container_width=True, hide_index=True,
+                 height=(max_len + 1) * 35 + 10)
     
     # ════════════════════════════════
 # TAB 4 — Historical OL Continuity
