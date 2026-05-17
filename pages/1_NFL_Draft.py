@@ -388,7 +388,9 @@ with tab3:
     with col_f1:
         selected_team  = st.selectbox("Team",     ["All"] + sorted(df["team"].unique().tolist()))
     with col_f2:
-        selected_pos = st.selectbox("Position", ["All"] + sorted(df["pos"].dropna().unique().tolist(), key=str.upper))
+        pos_order = ["All","QB","RB","FB","WR","TE","OL","EDGE","DT","LB","DB","K","P"]
+        available_pos = [p for p in pos_order if p in df["pos"].dropna().unique().tolist() or p == "All"]
+        selected_pos = st.selectbox("Position", available_pos)
     with col_f3:
         selected_round = st.selectbox("Round",    ["All"] + list(range(1, 8)))
     
