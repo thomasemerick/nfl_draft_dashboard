@@ -356,12 +356,16 @@ with tab2:
         }
     )
 
-    fig.update_traces(
-        marker=dict(size=12),
-        text=summary_df["team"],
-        textposition="top center",
-        mode="markers+text"
-    )
+    fig.update_traces(marker=dict(size=12))
+    for i, row in summary_df.iterrows():
+        fig.add_annotation(
+            x=row["trade_capital_net"],
+            y=row["total_value_diff"],
+            text=row["team"],
+            showarrow=False,
+            font=dict(size=10, color="black"),
+            yshift=12
+        )
     fig.add_hline(y=0, line_width=1, line_color="black")
     fig.add_vline(x=0, line_width=1, line_color="black")
     fig.update_layout(height=600)
