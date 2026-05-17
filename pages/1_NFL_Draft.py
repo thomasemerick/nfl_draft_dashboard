@@ -392,11 +392,11 @@ with tab3:
     with col_f3:
         selected_round = st.selectbox("Round",    ["All"] + list(range(1, 8)))
     
-    # ── Filter picks ──
-filtered = df.copy()
-if selected_team  != "All": filtered = filtered[filtered["team"]  == selected_team]
-if selected_pos   != "All": filtered = filtered[filtered["pos"]   == selected_pos]
-if selected_round != "All": filtered = filtered[filtered["round"] == selected_round]
+        # ── Filter picks ──
+    filtered = df.copy()
+    if selected_team  != "All": filtered = filtered[filtered["team"]  == selected_team]
+    if selected_pos   != "All": filtered = filtered[filtered["pos"]   == selected_pos]
+    if selected_round != "All": filtered = filtered[filtered["round"] == selected_round]
 
     
     st.subheader("Pick Explorer")
