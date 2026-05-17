@@ -318,17 +318,6 @@ with tab3:
 
     st.divider()
 
-    # Rookie starters by team
-    st.subheader("Teams Starting Rookies on OL")
-    rookies = merged[merged["designation"] == "Rookie"][["team","player_name","pos_abb"]].sort_values("team")
-    if len(rookies) > 0:
-        st.dataframe(rookies.rename(columns={"team":"Team","player_name":"Player","pos_abb":"Position"}).reset_index(drop=True),
-                     use_container_width=True, hide_index=True)
-    else:
-        st.write("No rookie starters found.")
-
-    st.divider()
-
    # Returning Starter bucket table
     st.subheader("Starting OL Continuity: Total Returning Starters")
     st.caption("Returning Starters = took more than 50% snaps or started Week 1 on same team last year.")
@@ -357,6 +346,17 @@ with tab3:
     st.dataframe(styled_bucket, use_container_width=True, hide_index=True,
                  height=(max_len + 1) * 35 + 10)
     
+    # Rookie starters by team
+        st.subheader("Rookie Offensive Linemen Projected to Start Week 1")
+        rookies = merged[merged["designation"] == "Rookie"][["team","player_name","pos_abb"]].sort_values("team")
+        if len(rookies) > 0:
+            st.dataframe(rookies.rename(columns={"team":"Team","player_name":"Player","pos_abb":"Position"}).reset_index(drop=True),
+                        use_container_width=True, hide_index=True)
+        else:
+            st.write("No rookie starters found.")
+
+        st.divider()
+
     # ════════════════════════════════
 # TAB 4 — Historical OL Continuity
 # ════════════════════════════════
