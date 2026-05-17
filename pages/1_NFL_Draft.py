@@ -266,12 +266,6 @@ st.title("🏈 2026 NFL Draft Dashboard")
 st.markdown("*Draft slot valuations via the Fitzgerald-Spielberger chart and consensus big board rankings via Arif Hasan*")
 st.divider()
 
-# ── Filter picks ──
-filtered = df.copy()
-if selected_team  != "All": filtered = filtered[filtered["team"]  == selected_team]
-if selected_pos   != "All": filtered = filtered[filtered["pos"]   == selected_pos]
-if selected_round != "All": filtered = filtered[filtered["round"] == selected_round]
-
 # ── Tabs ──
 tab1, tab2, tab3, tab4 = st.tabs(["📊 Team Grades", "🔵 YMMV Quadrants", "📋 Pick Explorer", "🏆 Bucking Consensus"])
 
@@ -397,6 +391,14 @@ with tab3:
         selected_pos   = st.selectbox("Position", ["All"] + sorted(df["pos"].dropna().unique().tolist()))
     with col_f3:
         selected_round = st.selectbox("Round",    ["All"] + list(range(1, 8)))
+    
+    # ── Filter picks ──
+filtered = df.copy()
+if selected_team  != "All": filtered = filtered[filtered["team"]  == selected_team]
+if selected_pos   != "All": filtered = filtered[filtered["pos"]   == selected_pos]
+if selected_round != "All": filtered = filtered[filtered["round"] == selected_round]
+
+    
     st.subheader("Pick Explorer")
     if selected_team != "All":
         st.markdown(f"Showing **{selected_team}** picks")
