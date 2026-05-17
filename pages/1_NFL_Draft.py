@@ -6,18 +6,17 @@ from collections import defaultdict
 
 # ── Page config ──
 st.set_page_config(
-    st.markdown("""
+    page_title="2026 NFL Draft Dashboard",
+    page_icon="🏈",
+    layout="wide"
+)
+st.markdown("""
     <style>
     [data-testid="stSidebarNavItems"] li:first-child {
         display: none;
     }
     </style>
 """, unsafe_allow_html=True)
-    page_title="2026 NFL Draft Dashboard",
-    page_icon="🏈",
-    layout="wide"
-)
-
 # ── Load data ──
 @st.cache_data
 def load_data():
