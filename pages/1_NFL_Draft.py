@@ -306,7 +306,11 @@ with tab1:
     st.markdown("""
 Each draft slot is attributed points via the Fitzgerald-Spielberger chart and consensus mock draft slot comes from Arif Hasan's consensus mock draft board.
 
-Adj Total translates directly to Score and Grades, and is the aggregate of net points from 1) pick # for player relative to mock draft consensus board # AND 2) draft capital advantage on pure pick swap deals.
+**Adj Total** — aggregate of two components:
+1. Net F-S points from pick # relative to consensus mock draft position
+2. Net draft capital gained or lost on pure pick swap trades
+
+Translates directly to Score and letter Grade.
 
 **Value Rate** — picks selected more than one standard deviation lower (F-S points) in the draft than projected.
 
