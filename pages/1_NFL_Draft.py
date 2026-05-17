@@ -320,7 +320,7 @@ with tab1:
         )
     st.markdown("")
     st.markdown("""
-Each draft slot is attributed points via the Fitzgerald-Spielberger chart and the consensus mock draft slot comes from Arif Hasan's consensus mock draft board.
+Each draft slot is attributed points via the Fitzgerald-Spielberger chart and the consensus mock draft slot comes from Arif Hasan's consensus mock draft board. The net value of each selection and pick swap is determined relative to these metrics, while the Fitzgerald-Spielberger points are also used to assess value of the projected and actual selection number for each pick.
 
 **Adj Total** — aggregate of two components:
 1. Net F-S points from pick # relative to consensus mock draft position
