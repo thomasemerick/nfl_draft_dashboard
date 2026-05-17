@@ -2,7 +2,7 @@ import streamlit as st
 
 st.set_page_config(page_title="Viztas", page_icon="📊", layout="wide")
 
-st.title("📊 datavizte")
+st.title("📊 Viztas")
 st.markdown("### Data science applications by Thomas Emerick")
 st.divider()
 
