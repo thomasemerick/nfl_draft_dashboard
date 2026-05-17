@@ -401,8 +401,6 @@ with tab3:
     if selected_team != "All":
         st.markdown(f"Showing **{selected_team}** picks")
     else:
-        st.markdown("Use sidebar to filter by team, position, or round")
-    else:
         st.markdown("Filter by team, position, or round above")
 
     show_cols = ["selection","round","pick","team","player","pos", "pick_tag", "age",
