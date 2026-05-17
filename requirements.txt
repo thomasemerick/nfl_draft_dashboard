@@ -2,3 +2,4 @@ streamlit
 plotly
 pandas
 openpyxl
+nflreadpy @ git+https://github.com/nflverse/nflreadpy
