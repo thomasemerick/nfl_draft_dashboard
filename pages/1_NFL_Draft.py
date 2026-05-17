@@ -10,7 +10,7 @@ st.set_page_config(
     page_icon="🏈",
     layout="wide"
 )
-st.markdown("[← Viztas Home](/) | *Data science apps from the lens of Thomas Emerick*")
+st.markdown("[← Viztas Home](/) | Data science apps from the lens of Thomas Emerick")
 st.divider()
 st.markdown("""
     <style>
@@ -266,12 +266,6 @@ st.title("🏈 2026 NFL Draft Dashboard")
 st.markdown("*Draft slot valuations via the Fitzgerald-Spielberger chart and consensus big board rankings via Arif Hasan*")
 st.divider()
 
-# ── Sidebar ──
-st.sidebar.title("Filters")
-selected_team  = st.sidebar.selectbox("Team",     ["All"] + sorted(df["team"].unique().tolist()))
-selected_pos   = st.sidebar.selectbox("Position", ["All"] + sorted(df["pos"].dropna().unique().tolist()))
-selected_round = st.sidebar.selectbox("Round",    ["All"] + list(range(1, 8)))
-
 # ── Filter picks ──
 filtered = df.copy()
 if selected_team  != "All": filtered = filtered[filtered["team"]  == selected_team]
@@ -396,11 +390,20 @@ with tab2:
 # TAB 3 — Pick Explorer
 # ════════════════════════════════
 with tab3:
+    col_f1, col_f2, col_f3 = st.columns(3)
+    with col_f1:
+        selected_team  = st.selectbox("Team",     ["All"] + sorted(df["team"].unique().tolist()))
+    with col_f2:
+        selected_pos   = st.selectbox("Position", ["All"] + sorted(df["pos"].dropna().unique().tolist()))
+    with col_f3:
+        selected_round = st.selectbox("Round",    ["All"] + list(range(1, 8)))
     st.subheader("Pick Explorer")
     if selected_team != "All":
         st.markdown(f"Showing **{selected_team}** picks")
     else:
         st.markdown("Use sidebar to filter by team, position, or round")
+    else:
+        st.markdown("Filter by team, position, or round above")
 
     show_cols = ["selection","round","pick","team","player","pos", "pick_tag", "age",
                  "college","pick_value","consensus","consensus_value","value_diff"]
