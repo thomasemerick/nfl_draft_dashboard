@@ -133,7 +133,7 @@ st.title("🏈 NFL Offensive Line Continuity Explorer")
 st.markdown("*Quantifying year-over-year continuity for projected starting units across the league*")
 st.divider()
 
-tab1, tab2, tab3, tab4 = st.tabs(["📊 League Overview", "🔵 Team Breakdown", "🏆 Continuity Visualization", "📈 Historical"])
+tab1, tab2, tab3, tab4 = st.tabs(["📊 League Overview", "🔵 Team Breakdown", "🏆 Continuity Viz", "📈 Historical"])
 
 # ════════════════════════════════
 # TAB 1 — OL Continuity Table

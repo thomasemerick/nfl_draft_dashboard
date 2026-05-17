@@ -1,7 +1,13 @@
 import streamlit as st
 
 st.set_page_config(page_title="Viztas", page_icon="📊", layout="wide")
-
+st.markdown("""
+    <style>
+    [data-testid="stSidebarNavItems"] li:first-child {
+        display: none;
+    }
+    </style>
+""", unsafe_allow_html=True)
 st.title("📊 Viztas")
 st.markdown("### A collection of apps from the data science lens of Thomas Emerick")
 st.divider()
