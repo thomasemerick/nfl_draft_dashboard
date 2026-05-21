@@ -3,6 +3,13 @@ import pandas as pd
 import plotly.express as px
 
 st.set_page_config(page_title="DC Elections", page_icon="🗳️", layout="wide")
+st.markdown("""
+    <style>
+    [data-testid="stSidebarNavItems"] li:first-child {
+        display: none;
+    }
+    </style>
+""", unsafe_allow_html=True)
 st.title("🗳️ DC Elections Dashboard")
 st.caption("2026 Primary Intelligence — Ward-level analysis")
 
@@ -47,7 +54,7 @@ fig2.update_layout(yaxis=dict(tickvals=list(range(1,9)), ticktext=[f"Ward {i}" f
 st.plotly_chart(fig2, use_container_width=True)
 
 # Ward 1 Spotlight
-st.subheader("📍 Ward 1 Spotlight — Trinidade Territory")
+st.subheader("📍 Ward 1 Spotlight")
 w1 = ward_data[ward_data["Ward"] == 1].iloc[0]
 c1, c2, c3 = st.columns(3)
 c1.metric("Registered Dems", f"{w1['Registered_Dems']:,}")
