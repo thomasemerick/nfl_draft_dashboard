@@ -8,11 +8,12 @@ st.markdown("""
     }
     </style>
 """, unsafe_allow_html=True)
+
 st.title("📊 Viztas")
 st.markdown("### A collection of apps from the data science lens of Thomas Emerick")
 st.divider()
 
-col1, col2 = st.columns(2)
+col1, col2, col3 = st.columns(3)
 
 with col1:
     st.markdown("""
@@ -31,3 +32,12 @@ with col2:
     </div>
     """, unsafe_allow_html=True)
     st.page_link("pages/2_OL_Continuity.py", label="→ Open OL Continuity Dashboard")
+
+with col3:
+    st.markdown("""
+    <div style="background-color:#8B0000; padding:30px; border-radius:10px; height:200px;">
+        <h2 style="color:white; margin-top:0;">🗳️ DC Elections 2026</h2>
+        <p style="color:white;">Ward-level turnout, voter opportunity index, and primary intelligence for the June 2026 DC Democratic primary.</p>
+    </div>
+    """, unsafe_allow_html=True)
+    st.page_link("pages/3_DC_Elections.py", label="→ Open DC Elections Dashboard")
