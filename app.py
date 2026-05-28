@@ -13,6 +13,7 @@ st.title("📊 Viztas")
 st.markdown("### A collection of apps from the data science lens of Thomas Emerick")
 st.divider()
 
+col1, col2 = st.columns(2)
 
 with col1:
     st.markdown("""
